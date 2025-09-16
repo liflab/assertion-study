@@ -1,0 +1,5 @@
+# Name: Fluent assertions
+SELECT DISTINCT ?n WHERE {
+  ?n :nodetype "MethodCallExpr" .
+  ?n :name "assertThat"
+}

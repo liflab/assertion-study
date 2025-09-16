@@ -1,0 +1,17 @@
+# Don't version the library and its shortcut
+lib/
+c
+
+# Don't version HTML reports
+*.html
+
+# Don't version the repositories
+Repositories/
+
+# Usual temp files (just in case)
+*.tmp
+*.log
+*~
+\#*
+*.bak
+*.old

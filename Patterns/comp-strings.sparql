@@ -1,0 +1,8 @@
+# Name: String equality
+SELECT DISTINCT ?n WHERE {
+  ?n :nodetype "MethodCallExpr" .
+  ?n :name "assertEquals" .
+  ?n :args ?a .
+  ?a :arg1 ?x .
+  ?x :resolvedtype "java.lang.String"
+}

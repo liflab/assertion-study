@@ -1,0 +1,7 @@
+# Name: Conditional assertions
+SELECT DISTINCT ?n WHERE {
+  ?x :nodetype "IfStmt" .
+  ?x :in+ ?n .
+  ?n :name ?a .
+  FILTER (CONTAINS(?a, "assert"))
+}

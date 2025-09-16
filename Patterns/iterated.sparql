@@ -1,0 +1,8 @@
+# Name: Iterated assertions
+SELECT DISTINCT ?n WHERE {
+  ?x :nodetype ?t .
+  ?x :in+ ?n .
+  ?n :name ?a .
+  VALUES (?t) {("ForStmt") ("WhileStmt")}.
+  FILTER (CONTAINS(?a, "assert"))
+}

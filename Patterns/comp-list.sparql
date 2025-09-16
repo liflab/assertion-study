@@ -1,0 +1,10 @@
+# Name: List equality
+SELECT DISTINCT ?n WHERE {
+  ?n :nodetype "MethodCallExpr" .
+  ?n :name ?an .
+  ?n :args ?a .
+  ?a :arg1 ?x .
+  ?x :resolvedtype ?t .
+  FILTER (CONTAINS(?an, "assert")) .
+  FILTER (CONTAINS(?t, "java.util.List"))
+}
