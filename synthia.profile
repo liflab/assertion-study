@@ -1,7 +1,7 @@
 --summary
 --quiet
 --root ca
---source Repositories/synthia
+--source Repositories/Synthia
 --output synthia.html
 --query Patterns
-Repositories/synthia
+Repositories/Synthia

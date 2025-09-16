@@ -1,7 +1,7 @@
 --summary
 --quiet
 --root org
---source Repositories/hadoop
+--source Repositories/Hadoop
 --output hadoop.html
 --query Patterns
-Repositories/hadoop
+Repositories/Hadoop

@@ -1,0 +1,6 @@
+# Name: Custom assertion functions
+SELECT DISTINCT ?n WHERE {
+  ?n :nodetype "MethodDeclaration" .
+  ?n :name ?an .
+  FILTER (CONTAINS(?an, "assert"))
+}
