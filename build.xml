@@ -68,6 +68,23 @@
 	  </sequential>
 	</macrodef>
 	
+	<!-- Macro to perform a CVS checkout only if target directory does not
+	     exist -->
+	<macrodef name="checkoutif">
+	  <attribute name="repo"/>
+	  <attribute name="dir"/>
+	  <attribute name="package"/>
+	  <sequential>
+		<if>
+	      <available file="@{dir}" type="dir"/>
+	    <then/>
+	    <else>
+	      <cvs cvsRoot="@{repo}" package="@{package}" dest="@{dir}" compression="true"/>
+	    </else>
+	  </if>
+	  </sequential>
+	</macrodef>
+	
   <!-- Target: ant-contrib.
        Downloads ant-contrib, only if it does not exist
   -->
@@ -115,6 +132,7 @@
 	  <cloneif repo="https://github.com/apache/hadoop.git" dir="${repofolder}/Hadoop"/>
 	  <cloneif repo="https://github.com/google/guava.git" dir="${repofolder}/Guava"/>
 	  <cloneif repo="https://github.com/elastic/elasticsearch.git" dir="${repofolder}/ElasticSearch"/>
+	  <checkoutif repo=":pserver:anonymous@gee.cs.oswego.edu/home/jsr166/jsr166" dir="${repofolder}/JSR166" package="jsr166"/>
 	</target>
 	
 	<!-- Target: setup

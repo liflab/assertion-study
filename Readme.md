@@ -6,6 +6,9 @@ Prerequisites
 
 - [A Java runtime environment](https://openjdk.org/) (version 17 or later)
 - [Apache Ant](https://ant.apache.org/)
+- To clone repositories considered in this analysis:
+  - [Git](https://git-scm.org)
+  - [CVS](https://www.nongnu.org/cvs/)
 
 Setting up the benchmark
 ------------------------
@@ -15,7 +18,7 @@ Setting up the benchmark
    tool and all the public repositories on which it was applied.
 
 Analyzing a project
--------------------
+------------------
 
 ### Using Ant
 
@@ -30,3 +33,12 @@ Analyzing a project
 1. Type `java -jar lib/codefinder-1.0.jar --profile xxx.profile`, where `xxx`
    is the name of one of the project profies included in the repository.
 2. Step 2 is as above.
+
+Projects currently included
+-------------------------
+
+- [Apache Hadoop](https://github.com/apache/hadoop) (1.9M LOC)
+- [ElasticSearch](https://github.com/elastic/elasticsearch) (3.7M LOC)
+- [Google Guava](https://github.com/google/guava) (30K LOC)
+- [JSR 166](https://gee.cs.oswego.edu/dl/concurrency-interest/index.html) (291K LOC)
+- [Synthia](https://github.com/liflab/synthia) (12K LOC)
