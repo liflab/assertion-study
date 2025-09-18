@@ -1,4 +1,5 @@
 # Profile for the analysis of JSR166
+--project JSR166
 --summary
 --quiet
 --root org
