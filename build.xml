@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project 
+  name="Simple assertion study survey"
+  default="setup"
+  basedir=".">
+  
+  <!-- The folder where libraries (ant-contrib, etc.) will be downloaded
+       if necessary -->
+  <property name="build.libdir" value="lib"/>
+  
+  <!-- The folder where repositories will be cloned -->
+  <property name="repofolder" value="Repositories"/>
+  
+  <!-- The name of the tool to download -->
+  <property name="toolname" value="codefinder-1.0"/> 
+  
+  <!-- The version of the tool to download -->
+  <property name="toolversion" value="1.0"/> 
+
+    <!-- Macro to call git -->
+    <macrodef name="git">
+		<attribute name="command" />
+		<attribute name="options" default="" />
+		<attribute name="dir" default="" />
+		<attribute name="failerror" default="false" />
+		<element name="args" optional="true" />
+		<sequential>
+			<echo message="git dir @{dir}" />
+			<echo message="git @{command}" />
+			<exec executable="git" dir="@{dir}" failonerror="@{failerror}">
+				<arg line="@{command} @{options}" />
+				<args />
+			</exec>
+		</sequential>
+	</macrodef>
+	
+	<!-- Macro to call git clone -->
+	<macrodef name="git-clone">
+		<attribute name="repository" />
+		<attribute name="dest" />
+		<attribute name="dir" />
+		<attribute name="options" default="" />
+		<attribute name="failerror" default="false" />
+		<sequential>
+			<git command="clone" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
+				<args>
+					<arg value="@{repository}" />
+					<arg value="@{dest}" />
+				</args>
+			</git>
+		</sequential>
+	</macrodef>
+	
+	<!-- Macro to clone only if target directory does not exist -->
+	<macrodef name="cloneif">
+		<attribute name="repo" />
+		<attribute name="dir" />
+		<sequential>
+		<if>
+	      <available file="@{dir}" type="dir"/>
+	    <then/>
+	    <else>
+	    <git-clone
+  	      repository="@{repo}"
+	      dest="@{dir}" dir="" options="--depth 1"/>
+	    </else>
+	  </if>
+	  </sequential>
+	</macrodef>
+	
+	<!-- Macro to perform a CVS checkout only if target directory does not
+	     exist -->
+	<macrodef name="checkoutif">
+	  <attribute name="repo"/>
+	  <attribute name="dir"/>
+	  <attribute name="package"/>
+	  <sequential>
+		<if>
+	      <available file="@{dir}" type="dir"/>
+	    <then/>
+	    <else>
+	      <cvs cvsRoot="@{repo}" package="@{package}" dest="@{dir}" compression="true"/>
+	    </else>
+	  </if>
+	  </sequential>
+	</macrodef>
+	
+  <!-- Target: ant-contrib.
+       Downloads ant-contrib, only if it does not exist
+  -->
+  <condition property="ant-contrib.absent" value="false" else="true">
+    <available file="${build.libdir}/ant-contrib-1.0b3.jar"/>
+  </condition>
+  <target name="ant-contrib" if="${ant-contrib.absent}"
+    description="Install ant-contrib if not present">
+    <echo message="ant-contrib is not installed. Downloading..." level="info"/>
+    <mkdir dir="${build.libdir}"/>
+    <get src="http://sylvainhalle.github.io/AntRun/dependencies/ant-contrib-1.0b3-bin.zip" dest="${build.libdir}/ant-contrib-1.0b3-bin.zip"/>
+    <unzip src="${build.libdir}/ant-contrib-1.0b3-bin.zip" dest="${build.libdir}">
+      <patternset>
+        <include name="**/*.jar"/>
+      </patternset>
+      <mapper type="flatten"/>
+    </unzip>
+  </target>
+	
+   <!-- Target: initialization
+       All other targets should ultimately
+       depend on this one (except perhaps very simple ones).
+   -->
+  <target name="init" depends="ant-contrib"
+    description="Initialize the project">
+	<!-- Load ant-contrib -->
+    <taskdef resource="net/sf/antcontrib/antlib.xml"
+      classpath="${build.libdir}/ant-contrib-1.0b3.jar"/>
+  </target>
+  
+  <condition property="codefinder.absent" value="false" else="true">
+    <available file="${build.libdir}/${toolname}.jar"/>
+  </condition>
+  <target name="download-tool" depends="init" if="${codefinder.absent}"
+    description="Download the tool">
+    <get src="https://github.com/liflab/codefinder/releases/download/v${toolversion}/${toolname}.jar" dest="${build.libdir}/${toolname}.jar"/>
+  </target>
+  
+  <!-- Target: clone
+       Clones the repositories
+  -->
+	<target name="clone"
+	  depends="init"
+	  description="Clones the repositories">
+	  <cloneif repo="https://github.com/apache/hadoop.git" dir="${repofolder}/Hadoop"/>
+	  <cloneif repo="https://github.com/google/guava.git" dir="${repofolder}/Guava"/>
+	  <cloneif repo="https://github.com/elastic/elasticsearch.git" dir="${repofolder}/ElasticSearch"/>
+	  <checkoutif repo=":pserver:anonymous@gee.cs.oswego.edu/home/jsr166/jsr166" dir="${repofolder}/JSR166" package="jsr166"/>
+	</target>
+	
+	<!-- Target: setup
+	     Main target that performs all the installation steps
+	-->
+	<target name="setup"
+	  description="Performs all the installation steps"
+	  depends="clone,download-tool">
+	</target>
+	
+	<!-- Target: analyze
+	     Analyzes a specific project
+	-->
+	<target name="analyze" depends="setup" description="Analyzes a repository">
+	  <java jar="${build.libdir}/${toolname}.jar" fork="true">
+	    <arg value="-p"/>
+	    <arg value="${project}.profile"/>
+	  </java>
+	</target>
+</project>
