@@ -4,6 +4,6 @@
 --quiet
 --root org
 --source Repositories/JSR166/jsr166/src/test/jtreg/lib
---output jsr166.html
+--output Reports/JSR166.html
 --query Patterns
 Repositories/JSR166/jsr166/src/test/jtreg/util

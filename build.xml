@@ -11,6 +11,9 @@
   <!-- The folder where repositories will be cloned -->
   <property name="repofolder" value="Repositories"/>
   
+  <!-- The folder where repositories will be cloned -->
+  <property name="reportfolder" value="Reports"/>
+  
   <!-- The name of the tool to download -->
   <property name="toolname" value="codefinder-1.0"/> 
   
@@ -113,8 +116,12 @@
 	<!-- Load ant-contrib -->
     <taskdef resource="net/sf/antcontrib/antlib.xml"
       classpath="${build.libdir}/ant-contrib-1.0b3.jar"/>
+    <mkdir dir="${reportfolder}"/>
   </target>
   
+  <!-- Target: download-tool
+       Downloads the tool if not present
+  -->
   <condition property="codefinder.absent" value="false" else="true">
     <available file="${build.libdir}/${toolname}.jar"/>
   </condition>
@@ -141,6 +148,17 @@
 	<target name="setup"
 	  description="Performs all the installation steps"
 	  depends="clone,download-tool">
+	</target>
+	
+	<!-- Target: clean
+	     Removes all reports and cache files
+	-->
+	<target name="clean"
+	  description="Removes all reports and cache files">
+	  <delete dir=".confinder_cache" quiet="true"/>
+	  <delete>
+	    <fileset dir="${reportfolder}" includes="*.html"/>
+	  </delete>
 	</target>
 	
 	<!-- Target: analyze

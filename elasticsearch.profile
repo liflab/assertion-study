@@ -1,4 +1,5 @@
 # Profile for the analysis of ElasticSearch
+--project ElasticSearch
 --summary
 --quiet
 --root org

@@ -1,7 +1,8 @@
+--project TeXtidote
 --summary
 --quiet
 --root ca
 --source Repositories/textidote
---output textidote.html
+--output Reports/textidote.html
 --query Patterns
 Repositories/textidote

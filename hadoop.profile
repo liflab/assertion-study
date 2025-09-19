@@ -1,7 +1,8 @@
+--project Hadoop
 --summary
 --quiet
 --root org
 --source Repositories/Hadoop
---output hadoop.html
+--output Reports/Hadoop.html
 --query Patterns
 Repositories/Hadoop
