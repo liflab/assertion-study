@@ -54,6 +54,21 @@
 		</sequential>
 	</macrodef>
 	
+	<!-- Macro to call SVN checkout -->
+    <macrodef name="svn">
+    	<attribute name="repository"/>
+    	<attribute name="dest"/>
+		<attribute name="dir" default="" />
+		<attribute name="failerror" default="false" />
+		<sequential>
+			<exec executable="svn" dir="@{dir}" failonerror="@{failerror}">
+				<arg value="co" />
+				<arg value="@{repository}"/>
+				<arg value="@{dest}"/>
+			</exec>
+		</sequential>
+	</macrodef>
+	
 	<!-- Macro to clone only if target directory does not exist -->
 	<macrodef name="cloneif">
 		<attribute name="repo" />
@@ -83,6 +98,22 @@
 	    <then/>
 	    <else>
 	      <cvs cvsRoot="@{repo}" package="@{package}" dest="@{dir}" compression="true"/>
+	    </else>
+	  </if>
+	  </sequential>
+	</macrodef>
+	
+	<!-- Macro to perform an SVN checkout only if target directory does not
+	     exist -->
+	<macrodef name="svncheckoutif">
+	  <attribute name="repo"/>
+	  <attribute name="dir"/>
+	  <sequential>
+		<if>
+	      <available file="@{dir}" type="dir"/>
+	    <then/>
+	    <else>
+	      <svn repository="@{repo}" dest="@{dir}"/>
 	    </else>
 	  </if>
 	  </sequential>
@@ -135,11 +166,19 @@
   -->
 	<target name="clone"
 	  depends="init"
-	  description="Clones the repositories">
-	  <cloneif repo="https://github.com/apache/hadoop.git" dir="${repofolder}/Hadoop"/>
+	  description="Clones the repositories"> <cloneif repo="https://github.com/apache/hadoop.git" dir="${repofolder}/Hadoop"/>
 	  <cloneif repo="https://github.com/google/guava.git" dir="${repofolder}/Guava"/>
 	  <cloneif repo="https://github.com/elastic/elasticsearch.git" dir="${repofolder}/ElasticSearch"/>
+	  <cloneif repo="https://github.com/sylvainhalle/textidote.git" dir="${repofolder}/TeXtidote"/>
+	  <cloneif repo="https://github.com/JabRef/jabref.git" dir="${repofolder}/JabRef"/>
+	  <cloneif repo="https://anongit.freedesktop.org/git/libreoffice/core.git" dir="${repofolder}/LibreOffice"/>
+	  <cloneif repo="https://github.com/JetBrains/intellij-community.git" dir="${repofolder}/IntelliJ"/>
 	  <checkoutif repo=":pserver:anonymous@gee.cs.oswego.edu/home/jsr166/jsr166" dir="${repofolder}/JSR166" package="jsr166"/>
+	  <cloneif repo="https://github.com/jenkinsci/jenkins.git" dir="${repofolder}/Jenkins"/>
+	  <cloneif repo="https://github.com/oracle/graal.git" dir="${repofolder}/GraalVM"/>
+	  <svncheckoutif repo="http://oss.mars.asu.edu/svn/jmars/" dir="${repofolder}/JMars"/>
+	  <cloneif repo="https://github.com/thunderbird/thunderbird-android.git" dir="${repofolder}/Thunderbird"/>
+	  <cloneif repo="https://github.com/nasa/ziggy.git" dir="${repofolder}/Ziggy"/>
 	</target>
 	
 	<!-- Target: setup

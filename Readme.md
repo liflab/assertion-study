@@ -7,8 +7,9 @@ Prerequisites
 - [A Java runtime environment](https://openjdk.org/) (version 17 or later)
 - [Apache Ant](https://ant.apache.org/)
 - To clone repositories considered in this analysis:
-  - [Git](https://git-scm.org)
   - [CVS](https://www.nongnu.org/cvs/)
+  - [Git](https://git-scm.org)
+  - [Subversion](https://subversion.apache.org/)
 
 Setting up the benchmark
 ------------------------
@@ -40,5 +41,11 @@ Projects currently included
 - [Apache Hadoop](https://github.com/apache/hadoop) (1.9M LOC)
 - [ElasticSearch](https://github.com/elastic/elasticsearch) (3.7M LOC)
 - [Google Guava](https://github.com/google/guava) (30K LOC)
+- [GraalVM](https://github.com/oracle/graal) (1.8M LOC)
+- [JabRef](https://github.com/JabRef/jabref) (222K LOC)
+- [Jenkins](https://github.com/jenkinsci/jenkins) (199K LOC)
 - [JSR 166](https://gee.cs.oswego.edu/dl/concurrency-interest/index.html) (291K LOC)
+- [LibreOffice](https://anongit.freedesktop.org/git/libreoffice/core.git) (255K LOC --only Java)
 - [Synthia](https://github.com/liflab/synthia) (12K LOC)
+- [TeXtidote](https://github.com/sylvainhalle/textidote) (7K LOC)
+- [Ziggy](https://github.com/nasa/ziggy) (82K LOC)

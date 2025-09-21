@@ -6,4 +6,3 @@
 --source Repositories/Synthia
 --output Reports/Synthia.html
 --query Patterns
-Repositories/Synthia
