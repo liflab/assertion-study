@@ -1,4 +1,4 @@
-# Name: String equality
+# Name: Equality between/Strings
 SELECT DISTINCT ?n WHERE {
   ?n :nodetype "MethodCallExpr" .
   ?n :name "assertEquals" .

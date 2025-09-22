@@ -1,4 +1,4 @@
-# Name: List equality
+# Name: Equality between/Lists
 SELECT DISTINCT ?n WHERE {
   ?n :nodetype "MethodCallExpr" .
   ?n :name ?an .

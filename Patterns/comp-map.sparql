@@ -1,4 +1,4 @@
-# Name: Map equality
+# Name: Equality between/Maps
 SELECT DISTINCT ?n WHERE {
   ?n :nodetype "MethodCallExpr" .
   ?n :name ?an .
