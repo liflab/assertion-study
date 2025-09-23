@@ -1,4 +1,4 @@
-# Name: Compound assertions
+# Name: Compound assertions/Total
 SELECT DISTINCT ?n WHERE {
   ?n :name ?a .
   FILTER (CONTAINS(?a, "assert")) .

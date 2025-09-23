@@ -1,0 +1,14 @@
+# Name: Compound assertions/Nested
+SELECT DISTINCT ?n WHERE {
+  ?n :name ?a .
+  FILTER (CONTAINS(?a, "assert")) .
+  ?n :params ?x .
+  ?x :arg1 ?z .
+  ?z :nodetype "BinaryExpr" .
+  ?z :operator ?oz .
+  ?z :in+ ?y .
+  ?y :nodetype "BinaryExpr" .
+  ?y :operator ?oy .
+  VALUES (?oy) {("&&") ("||")}
+  VALUES (?oz) {("&&") ("||")}
+}

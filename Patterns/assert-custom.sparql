@@ -2,9 +2,9 @@
 SELECT DISTINCT ?n WHERE {
   ?n :nodetype "MethodDeclaration" .
   ?n :name ?an1 .
-  #?n (:in/:next)+ ?a .
-  #?a :nodetype "MethodCall" .
-  #?a :name ?an2 .
-  FILTER (CONTAINS(?an1, "assert")) 
-  #FILTER (CONTAINS(?an2, "assert"))
+  ?n (:in|:next)* ?a .
+  ?a :nodetype "MethodCallExpr" .
+  ?a :name ?an2 .
+  FILTER (CONTAINS(?an1, "assert")) .
+  FILTER (CONTAINS(?an2, "assert"))
 }
