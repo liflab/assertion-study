@@ -1,0 +1,15 @@
+# Name: Potential rotten tests
+SELECT DISTINCT ?n WHERE {
+  ?n :nodetype "MethodDeclaration" ;
+     :annotations/:name "Test" ;
+     :in ?blk .
+  ?blk :nodetype "BlockStmt" ; :in ?first .
+
+  # …but there is NO top-level assert among the block’s statements
+  FILTER NOT EXISTS {
+    { BIND(?first AS ?stmt) } UNION { ?first :next* ?stmt }
+    ?stmt :nodetype "MethodCallExpr" ;
+          :name ?cn2 .
+    FILTER( STRSTARTS(LCASE(?cn2), "assert") )
+  }
+}
