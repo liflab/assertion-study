@@ -8,7 +8,7 @@ SELECT DISTINCT ?n WHERE {
   
   # There exists at least one assert call somewhere in the body…
   FILTER EXISTS {
-    ?m :in/(:in|:next)* ?call .
+    ?n :in/(:in|:next)* ?call .
     ?call :nodetype "MethodCallExpr" ;
           :name ?cn .
     FILTER( STRSTARTS(LCASE(?cn), "assert") )
