@@ -1,0 +1,5 @@
+# Name: Tests with throws
+SELECT ?n WHERE {
+  ?n :annotations/:name "Test" ;
+     (:in|:next)*/:nodetype "ThrowStmt" .
+}

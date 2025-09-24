@@ -1,0 +1,7 @@
+# Name: Tests calling another test
+SELECT ?n WHERE {
+  ?n :annotations/:name "Test" ;
+     (:in|:next)* ?c .
+  ?c :nodetype "MethodCallExpr" ;
+     :declaration/:annotations/:name "Test" .
+}
