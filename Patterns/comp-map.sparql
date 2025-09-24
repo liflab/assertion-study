@@ -2,6 +2,11 @@
 SELECT DISTINCT ?n WHERE {
   ?n :nodetype "MethodCallExpr" ;
      :name ?an .
-  ?n :params/:arg1/:resolvedtype/:instanceof "java.util.Map" .
+     :params/:arg1/:resolvedtype ?t .
+  ?t :instanceof "java.util.Map" .
   FILTER (CONTAINS(?an, "assert"))
 }
+
+# Note: in this query, ?t must first be materialized before being
+# reused in another triplet. That is, writing
+# :params/:arg1/:resolvedtype/:instanceof "xxx" does not work.

@@ -2,15 +2,13 @@
 SELECT DISTINCT ?n WHERE {
   ?n     :nodetype "ClassOrInterfaceDeclaration" ;
          :name ?name1 ;
-         (:in/:next)* ?md .
+         (:in|:next)* ?md .
   ?md    :nodetype "MethodDeclaration" ;
          :annotations/:name "Test" ;
-         (:in/:next)* ?mc .
+         (:in|:next)* ?mc .
   ?mc    :nodetype "MethodCallExpr" ;
-         :declaration ?d .
-  ?d     (^:in|^:next)* ?o .
-  ?name1 :nodetype "ClassOrInterfaceDeclaration" ;
-         :name ?name2 .
-  FILTER (CONTAINS(?on, "Test")) .
+         :scope ?s .
+  ?s     :resolvedtype ?name2 .
+  FILTER (CONTAINS(?name2, "Test")) .
   FILTER (?name1 != ?name2) .
 }
