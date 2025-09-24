@@ -32,7 +32,8 @@ Analyzing a project
 ### By calling the tool directly
 
 1. Type `java -jar lib/codefinder-1.0.jar --profile xxx.profile`, where `xxx`
-   is the name of one of the project profies included in the repository.
+   is the name of one of the project profies included in the repository
+   (profiles are stored in the `Profiles` subfolder).
 2. Step 2 is as above.
 
 Projects currently included

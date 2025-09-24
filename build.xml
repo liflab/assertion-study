@@ -13,6 +13,9 @@
   
   <!-- The folder where repositories will be cloned -->
   <property name="reportfolder" value="Reports"/>
+
+  <!-- The folder where profiles are stored -->
+  <property name="profilefolder" value="Profiles"/>
   
   <!-- The name of the tool to download -->
   <property name="toolname" value="codefinder-1.0"/> 
@@ -206,7 +209,7 @@
 	<target name="analyze" depends="setup" description="Analyzes a repository">
 	  <java jar="${build.libdir}/${toolname}.jar" fork="true">
 	    <arg value="-p"/>
-	    <arg value="${project}.profile"/>
+	    <arg value="${profilefolder}/${project}.profile"/>
 	  </java>
 	</target>
 </project>

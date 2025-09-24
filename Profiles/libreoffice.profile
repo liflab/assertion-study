@@ -1,5 +1,5 @@
 # Analysis profile for LibreOffice
---project JabRef
+--project LibreOffice
 --summary
 --quiet
 --root org

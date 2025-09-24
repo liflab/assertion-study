@@ -3,9 +3,18 @@ SELECT DISTINCT ?n WHERE {
   ?n :nodetype "MethodDeclaration" ;
      :annotations/:name "Test" ;
      :in ?blk .
-  ?blk :nodetype "BlockStmt" ; :in ?first .
+  ?blk :nodetype "BlockStmt" ; 
+       :in ?first .
+  
+  # There exists at least one assert call somewhere in the body…
+  FILTER EXISTS {
+    ?m :in/(:in|:next)* ?call .
+    ?call :nodetype "MethodCallExpr" ;
+          :name ?cn .
+    FILTER( STRSTARTS(LCASE(?cn), "assert") )
+  }
 
-  # …but there is NO top-level assert among the block’s statements
+  # …but there is NO top-level assert among the block's statements
   FILTER NOT EXISTS {
     { BIND(?first AS ?stmt) } UNION { ?first :next* ?stmt }
     ?stmt :nodetype "MethodCallExpr" ;

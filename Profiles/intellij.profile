@@ -6,3 +6,5 @@
 --source Repositories/IntelliJ
 --output Reports/IntelliJ.html
 --query Patterns
+# The following file(s) cause a StackOverflowError
+--ignore Parenth2.java
