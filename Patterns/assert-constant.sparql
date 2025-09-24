@@ -1,9 +1,8 @@
 # Name: Assertion of true or false
 SELECT DISTINCT ?n WHERE {
   ?n :nodetype "MethodCallExpr" .
-  ?n :name ?an .
+     :name ?an .
+     :params ?a .
   VALUES (?an) {("assertTrue") ("assertFalse")} .
-  ?n :args ?a .
-  ?a :arg1 ?x .
-  ?x :nodetype "BooleanLiteralExpr"
+  ?a :arg1/:nodetype "BooleanLiteralExpr" .
 }

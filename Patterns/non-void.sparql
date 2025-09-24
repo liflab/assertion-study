@@ -1,5 +1,7 @@
-# Name: Tests with return
+# Name: Tests with non-void return type
 SELECT * WHERE {
   ?n :annotations/:name "Test" ;
-     (:in|:next)*/:nodetype "ReturnStmt" .
+     :nodetype "MethodDeclaration" ;
+     :returns ?t .
+  FILTER (?t != "void") .
 }

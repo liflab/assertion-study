@@ -1,5 +1,11 @@
 # Name: Tests with throws
 SELECT ?n WHERE {
   ?n :annotations/:name "Test" ;
-     (:in|:next)*/:nodetype "ThrowStmt" .
+     (:in|:next)* ?t .
+  ?t :nodetype "ThrowStmt" .
+  FILTER NOT EXISTS {
+    ?n (:in|:next)* ?c .
+    ?c :nodetype "CatchClause" .
+    ?c (:in|:next)* ?t .
+  } .
 }

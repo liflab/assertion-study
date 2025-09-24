@@ -1,0 +1,15 @@
+# Name: Trivial assertions/Length not negative
+SELECT DISTINCT ?n WHERE {
+  ?n :nodetype "MethodCallExpr" ;
+     :name "assertTrue" ;
+     :params/:arg1 ?a .
+  ?a :nodetype "BinaryExpr" ;
+     :operator ">=" ;
+     :arg1 ?x ;
+     :arg2 ?y .
+  ?a :nodetype "MethodCallExpr" ;
+     :name ?mname .
+  VALUES (?mname) {("size") ("length")} .
+  ?y :nodetype "IntegerLiteralExpr" ;
+     :value "0" .
+}

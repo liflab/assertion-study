@@ -1,10 +1,9 @@
 # Name: Negated assertion
 SELECT DISTINCT ?n WHERE {
-  ?n :nodetype "MethodCallExpr" .
-  ?n :name ?a .
+  ?n :nodetype "MethodCallExpr" ;
+     :name ?a ;
+     :params/:arg1 ?b .
   FILTER (CONTAINS(?a, "assert")) .
-  ?n :args ?arg .
-  ?arg :arg1 ?b .
-  ?b :nodetype "UnaryExpr" .
-  ?b :operator "!"
+  ?b :nodetype "UnaryExpr" ;
+     :operator "!" .
 }
