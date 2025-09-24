@@ -2,8 +2,8 @@
 SELECT ?n WHERE {
   ?n :nodetype "MethodCallExp" ;
      :name ?an ;
-     :args/:arg1/:resolvedtype ?t1 ;
-     :args/:arg2/:resolvedtype ?t2 .
+     :params/:arg1/:resolvedtype ?t1 ;
+     :params/:arg2/:resolvedtype ?t2 .
   VALUES (?an) {("assertEquals") ("assertNotEquals")} .
   FILTER (?t1 != ?t2) .
 }

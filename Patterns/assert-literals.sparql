@@ -1,0 +1,17 @@
+# Name: Assertion of literals
+SELECT DISTINCT ?n WHERE {
+  ?n :nodetype "MethodCallExpr" ;
+     :name ?an ;
+     :params ?a .
+  VALUES (?an) {("assertEquals") ("assertNotEquals")} .
+  ?a :arg1/:nodetype ?t1 ;
+     :arg1/:resolvedtype ?r1 ;
+     :arg2/:nodetype ?t2 ;
+     :arg2/:resolvedtype ?r2 .
+  FILTER (CONTAINS(?t1, "Literal")) .
+  FILTER (CONTAINS(?t2, "Literal")) .
+  FILTER (?r1 = ?r2) .
+  FILTER NOT EXISTS {
+    ?a :arg3 ?x .
+  } .
+}
