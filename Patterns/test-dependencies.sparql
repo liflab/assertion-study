@@ -9,6 +9,7 @@ SELECT DISTINCT ?n WHERE {
   ?mc    :nodetype "MethodCallExpr" ;
          :scope ?s .
   ?s     :resolvedtype ?name2 .
+  FILTER (CONTAINS(?name1, "Test")) .
   FILTER (CONTAINS(?name2, "Test")) .
   FILTER (?name1 != ?name2) .
 }
