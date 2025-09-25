@@ -1,5 +1,5 @@
 # Name: Use of fail
 SELECT DISTINCT ?n WHERE {
-  ?n :nodetype "MethodCallExpr" .
-  ?n :name "fail"
+  ?n :nodetype "MethodCallExpr" ;
+     :name "fail" .
 }

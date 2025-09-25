@@ -1,5 +1,5 @@
 # Name: Tests with return
-SELECT * WHERE {
+SELECT ?n WHERE {
   ?n :annotations/:name "Test" ;
      (:in|:next)*/:nodetype "ReturnStmt" .
 }

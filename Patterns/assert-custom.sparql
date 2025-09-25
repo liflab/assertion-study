@@ -1,10 +1,10 @@
 # Name: Custom assertion functions/Containing assertions
 SELECT DISTINCT ?n WHERE {
-  ?n :nodetype "MethodDeclaration" .
-  ?n :name ?an1 .
-  ?n (:in|:next)* ?a .
-  ?a :nodetype "MethodCallExpr" .
-  ?a :name ?an2 .
+  ?n :nodetype "MethodDeclaration" ;
+     :name ?an1 ;
+     (:in|:next)* ?a .
+  ?a :nodetype "MethodCallExpr" ;
+     :name ?an2 .
   FILTER (CONTAINS(?an1, "assert")) .
-  FILTER (CONTAINS(?an2, "assert"))
+  FILTER (CONTAINS(?an2, "assert")) .
 }

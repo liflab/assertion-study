@@ -1,8 +1,8 @@
 # Name: Custom assertion functions/Throwing exceptions
 SELECT DISTINCT ?n WHERE {
-  ?n :nodetype "MethodDeclaration" .
-  ?n :name ?an1 .
-  ?n (:in/:next)+ ?a .
+  ?n :nodetype "MethodDeclaration" ;
+     :name ?an1 ;
+     (:in/:next)+ ?a .
   ?a :nodetype "ThrowStmt" .
   FILTER (CONTAINS(?an1, "assert")) .
 }

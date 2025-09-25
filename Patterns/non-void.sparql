@@ -1,5 +1,5 @@
 # Name: Tests with non-void return type
-SELECT * WHERE {
+SELECT ?n WHERE {
   ?n :annotations/:name "Test" ;
      :nodetype "MethodDeclaration" ;
      :returns ?t .

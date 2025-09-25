@@ -1,7 +1,7 @@
 # Name: Conditional assertions
 SELECT DISTINCT ?n WHERE {
-  ?x :nodetype "IfStmt" .
-  ?x :in+ ?n .
-  ?n :name ?a .
-  FILTER (CONTAINS(?a, "assert"))
+  ?n :nodetype ?t ;
+     :in/(:in|:next)*/:name ?a .
+  FILTER (CONTAINS(?a, "assert")) .
+  VALUES (?t) {("IfStmt") ("SwitchStmt")} .
 }

@@ -7,7 +7,7 @@ SELECT DISTINCT ?n WHERE {
      :operator ">=" ;
      :arg1 ?x ;
      :arg2 ?y .
-  ?a :nodetype "MethodCallExpr" ;
+  ?x :nodetype "MethodCallExpr" ;
      :name ?mname .
   VALUES (?mname) {("size") ("length")} .
   ?y :nodetype "IntegerLiteralExpr" ;

@@ -1,8 +1,8 @@
 # Name: Equality between/Lists
 SELECT DISTINCT ?n WHERE {
   ?n :nodetype "MethodCallExpr" ;
-     :name ?an .
-  ?n :params/:arg1/:resolvedtype ?t.
+     :name ?an ;
+     :params/:arg1/:resolvedtype ?t .
   ?t :instanceof "java.util.List" .
   FILTER (CONTAINS(?an, "assert"))
 }

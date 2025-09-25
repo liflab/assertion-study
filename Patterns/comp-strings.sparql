@@ -1,8 +1,10 @@
 # Name: Equality between/Strings
 SELECT DISTINCT ?n WHERE {
-  ?n :nodetype "MethodCallExpr" .
-  ?n :name "assertEquals" .
-  ?n :params ?a .
-  ?a :arg1 ?x .
-  ?x :resolvedtype "java.lang.String"
+  ?n :nodetype "MethodCallExpr" ;
+     :name "assertEquals" ;
+     :params/:arg1/:resolvedtype "java.lang.String" ;
+     :params/:arg2/:resolvedtype "java.lang.String" .
+  FILTER NOT EXISTS {
+     ?n :params/:arg3 ?x .
+  } .
 }

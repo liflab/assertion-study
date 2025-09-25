@@ -1,7 +1,7 @@
 # Name: Equality between/Maps
 SELECT DISTINCT ?n WHERE {
   ?n :nodetype "MethodCallExpr" ;
-     :name ?an .
+     :name ?an ;
      :params/:arg1/:resolvedtype ?t .
   ?t :instanceof "java.util.Map" .
   FILTER (CONTAINS(?an, "assert"))

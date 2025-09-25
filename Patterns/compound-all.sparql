@@ -1,10 +1,9 @@
 # Name: Compound assertions/Total
 SELECT DISTINCT ?n WHERE {
-  ?n :name ?a .
+  ?n :name ?a ;
+     :params/:arg1 ?x .
   FILTER (CONTAINS(?a, "assert")) .
-  ?n :params ?x .
-  ?x :arg1 ?y .
-  ?y :nodetype "BinaryExpr" .
-  ?y :operator ?o .
+  ?x :nodetype "BinaryExpr" ;
+     :operator ?o .
   VALUES (?o) {("&&") ("||")}
 }
