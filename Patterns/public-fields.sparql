@@ -1,0 +1,12 @@
+# Name: Urma/Public member fields
+SELECT ?n WHERE {
+  ?n :nodetype "FieldDeclaration" ;
+     :modifiers "public" .
+  FILTER NOT EXISTS {
+     ?n :modifiers "final" .
+  } .
+}
+
+# Note: this is one of the three queries explicitly mentioned in the
+# following paper as an evaluation of performance:
+# https://www.repository.cam.ac.uk/bitstreams/490ae03c-b90c-41bf-a7a1-7849d4536c20/download

@@ -3,7 +3,7 @@ SELECT DISTINCT ?n WHERE {
   ?n :nodetype "MethodCallExpr" ;
      :name "assertEquals" ;
      :params/:arg1/:resolvedtype "java.lang.String" ;
-     :params/:arg2/:resolvedtype "java.lang.String" .
+     :params/:arg2/:resolvedtype "java.lang.String" .  
   FILTER NOT EXISTS {
      ?n :params/:arg3 ?x .
   } .

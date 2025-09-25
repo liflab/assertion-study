@@ -1,0 +1,13 @@
+# Name: Urma/Recursive methods
+SELECT ?n WHERE {
+  ?n :nodetype "MethodDeclaration" ;
+     :name ?x ;
+     (:in|:next)* ?c .
+  ?c :nodetype "MethodCallExpr" ;
+     :name ?y .
+  FILTER (?x = ?y) .
+}
+
+# Note: this is one of the three queries explicitly mentioned in the
+# following paper as an evaluation of performance:
+# https://www.repository.cam.ac.uk/bitstreams/490ae03c-b90c-41bf-a7a1-7849d4536c20/download

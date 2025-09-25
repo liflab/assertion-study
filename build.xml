@@ -170,11 +170,12 @@
 	<target name="clone"
 	  depends="init"
 	  description="Clones the repositories"> <cloneif repo="https://github.com/apache/hadoop.git" dir="${repofolder}/Hadoop"/>
+	  <cloneif repo="https://github.com/apache/ant.git" dir="${repofolder}/Ant"/>
 	  <cloneif repo="https://github.com/google/guava.git" dir="${repofolder}/Guava"/>
 	  <cloneif repo="https://github.com/elastic/elasticsearch.git" dir="${repofolder}/ElasticSearch"/>
 	  <cloneif repo="https://github.com/sylvainhalle/textidote.git" dir="${repofolder}/TeXtidote"/>
 	  <cloneif repo="https://github.com/JabRef/jabref.git" dir="${repofolder}/JabRef"/>
-		<cloneif repo="https://anongit.freedesktop.org/git/libreoffice/core.git" dir="${repofolder}/LibreOffice"/>
+	  <cloneif repo="https://anongit.freedesktop.org/git/libreoffice/core.git" dir="${repofolder}/LibreOffice"/>
 	  <cloneif repo="https://github.com/JetBrains/intellij-community.git" dir="${repofolder}/IntelliJ"/>
 	  <checkoutif repo=":pserver:anonymous@gee.cs.oswego.edu/home/jsr166/jsr166" dir="${repofolder}/JSR166" package="jsr166"/>
 	  <cloneif repo="https://github.com/jenkinsci/jenkins.git" dir="${repofolder}/Jenkins"/>
