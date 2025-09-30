@@ -1,6 +1,10 @@
 Study of assertion usage in open-source projects
 ================================================
 
+This repository sets up an environment for analyzing the usage of assertions
+in open source projets. The analysis is done using the
+[Piglet](https://github.com/liflab/piglet) source code query engine.
+
 Prerequisites
 -------------
 
@@ -31,10 +35,29 @@ Analyzing a project
 
 ### By calling the tool directly
 
-1. Type `java -jar lib/codefinder-1.0.jar --profile xxx.profile`, where `xxx`
+1. Type `java -jar lib/piglet-1.1.jar xxx.profile`, where `xxx`
    is the name of one of the project profies included in the repository
    (profiles are stored in the `Profiles` subfolder).
 2. Step 2 is as above.
+
+Viewing the results
+------------------
+
+A report in the form of an HTML file is produced, normally saved in the
+folder `Reports` and having the same name as the project being analyzed.
+It can be open locally in a web browser to allow a detailed analysis of the found
+tokens and the source code they correspond to.
+
+Otherwise, the results of an analysis are also stored in machine-readable
+JSON files, which serialize the tokens collected by each finder. These
+files serve a double purpose: first, they allow further processing
+of the tool’s results by automated means (such as auxiliary user-
+defined scripts). Second, they are used by Piglet as a cache: when a
+finder is asked to analyze a project for which a corresponding JSON
+file exists, analysis is skipped and the finder merely deserializes
+the previously computed results. These files, when they exist, are stored
+in the folder `.confinder_cache/xxx`, where `xxx` is the corresponding
+project name. There is one JSON file per token finder.
 
 Projects currently included
 -------------------------
