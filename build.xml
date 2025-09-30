@@ -17,11 +17,12 @@
   <!-- The folder where profiles are stored -->
   <property name="profilefolder" value="Profiles"/>
   
-  <!-- The name of the tool to download -->
-  <property name="toolname" value="codefinder-1.0"/> 
-  
   <!-- The version of the tool to download -->
-  <property name="toolversion" value="1.0"/> 
+  <property name="toolversion" value="1.1"/> 
+  
+  <!-- The name of the tool to download -->
+  <property name="toolname" value="piglet-${toolversion}"/> 
+
 
     <!-- Macro to call git -->
     <macrodef name="git">
@@ -156,12 +157,12 @@
   <!-- Target: download-tool
        Downloads the tool if not present
   -->
-  <condition property="codefinder.absent" value="false" else="true">
+  <condition property="piglet.absent" value="false" else="true">
     <available file="${build.libdir}/${toolname}.jar"/>
   </condition>
-  <target name="download-tool" depends="init" if="${codefinder.absent}"
+  <target name="download-tool" depends="init" if="${piglet.absent}"
     description="Download the tool">
-    <get src="https://github.com/liflab/codefinder/releases/download/v${toolversion}/${toolname}.jar" dest="${build.libdir}/${toolname}.jar"/>
+    <get src="https://github.com/liflab/piglet/releases/download/v${toolversion}/${toolname}.jar" dest="${build.libdir}/${toolname}.jar"/>
   </target>
   
   <!-- Target: clone
@@ -209,7 +210,6 @@
 	-->
 	<target name="analyze" depends="setup" description="Analyzes a repository">
 	  <java jar="${build.libdir}/${toolname}.jar" fork="true">
-	    <arg value="-p"/>
 	    <arg value="${profilefolder}/${project}.profile"/>
 	  </java>
 	</target>
