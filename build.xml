@@ -18,7 +18,7 @@
   <property name="profilefolder" value="Profiles"/>
   
   <!-- The version of the tool to download -->
-  <property name="toolversion" value="1.1"/> 
+  <property name="toolversion" value="1.1.1"/> 
   
   <!-- The name of the tool to download -->
   <property name="toolname" value="piglet-${toolversion}"/> 
