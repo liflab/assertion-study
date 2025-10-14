@@ -6,4 +6,5 @@
 --source Repositories/ElasticSearch
 --output elasticsearch.html
 --query Patterns
+--timeout 10
 Repositories/ElasticSearch

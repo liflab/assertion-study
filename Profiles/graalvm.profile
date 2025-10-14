@@ -6,3 +6,4 @@
 --source Repositories/GraalVM
 --output Reports/GraalVM.html
 --query Patterns
+--timeout 10

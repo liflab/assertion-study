@@ -1,3 +1,4 @@
+# Analysis profile for Ant
 --project Ant
 --summary
 --quiet
@@ -5,4 +6,5 @@
 --source Repositories/Ant
 --output Reports/Ant.html
 --query Patterns
+--timeout 10
 Repositories/Ant

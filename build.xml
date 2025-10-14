@@ -18,11 +18,13 @@
   <property name="profilefolder" value="Profiles"/>
   
   <!-- The version of the tool to download -->
-  <property name="toolversion" value="1.1.1"/> 
+ <property name="toolversion" value="1.2"/>
+  
+  <!-- The folder containing the cache -->
+  <property name="cachefolder" value=".cache"/>
   
   <!-- The name of the tool to download -->
   <property name="toolname" value="piglet-${toolversion}"/> 
-
 
     <!-- Macro to call git -->
     <macrodef name="git">
@@ -192,6 +194,7 @@
 	<target name="setup"
 	  description="Performs all the installation steps"
 	  depends="clone,download-tool">
+	  <mkdir dir="${cachefolder}"/>
 	</target>
 	
 	<!-- Target: clean
@@ -199,7 +202,8 @@
 	-->
 	<target name="clean"
 	  description="Removes all reports and cache files">
-	  <delete dir=".confinder_cache" quiet="true"/>
+	  <delete dir="${cachefolder}" quiet="true"/>
+	  <mkdir dir="${cachefolder}"/>
 	  <delete>
 	    <fileset dir="${reportfolder}" includes="*.html"/>
 	  </delete>

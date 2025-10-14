@@ -6,3 +6,4 @@
 --source Repositories/JabRef
 --output Reports/JabRef.html
 --query Patterns
+--timeout 10

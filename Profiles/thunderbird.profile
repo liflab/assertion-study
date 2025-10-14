@@ -6,3 +6,4 @@
 --source Repositories/Thunderbird
 --output Reports/Thunderbird.html
 --query Patterns
+--timeout 10

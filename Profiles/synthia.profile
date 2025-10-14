@@ -6,3 +6,4 @@
 --source Repositories/Synthia
 --output Reports/Synthia.html
 --query Patterns
+--timeout 10

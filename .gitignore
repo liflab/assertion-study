@@ -9,7 +9,7 @@ c
 Repositories/
 
 # Don't version the cache
-.codefinder_cache/
+.cache/
 
 # Usual temp files (just in case)
 *.tmp

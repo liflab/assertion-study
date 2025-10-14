@@ -6,3 +6,4 @@
 --source Repositories/Jenkins
 --output Reports/Jenkins.html
 --query Patterns
+--timeout 10

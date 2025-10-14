@@ -6,3 +6,4 @@
 --source Repositories/LibreOffice
 --output Reports/LibreOffice.html
 --query Patterns
+--timeout 10

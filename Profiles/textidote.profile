@@ -6,3 +6,4 @@
 --source Repositories/TeXtidote
 --output Reports/TeXtidote.html
 --query Patterns
+--timeout 10

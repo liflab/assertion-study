@@ -6,3 +6,4 @@
 --source Repositories/Ziggy
 --output Reports/Ziggy.html
 --query Patterns
+--timeout 10
