@@ -1,0 +1,25 @@
+# Name: Overly generic assertions
+
+SELECT DISTINCT ?n WHERE {
+  ?n :annotations/:name "Test" ;
+     :in/(:in|:next)* ?a .
+  ?a :nodetype "MethodCallExpr" ;
+     :name ?an ;
+     :params/:arg1 ?arg .
+  VALUES (?an) {("assertTrue") ("assertFalse")} .
+  
+  {
+    SELECT ?arg WHERE {
+      ?arg :nodeType "MethodCallExpr" ;
+           :name "equals" .
+    }
+  }
+  UNION
+  {
+    SELECT ?arg WHERE {
+      ?arg :nodeType "BinaryExpr" ;
+           :operator ?o .
+      VALUES (?o) {("==") ("!=") ("<") (">") ("<=") (">=") } .
+    }
+  }
+}

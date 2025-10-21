@@ -1,0 +1,26 @@
+# Name: Comparison of aggregate properties
+
+SELECT DISTINCT ?n WHERE {
+  ?n :annotations/:name "Test" ;
+     :in/(:in|:next)* ?a .
+  ?a :nodetype "MethodCallExpr" ;
+     :name ?an .
+  FILTER(STRSTARTS(?an, "assert") .
+  ?a :params/:arg1 ?arg1 ;
+     :params/:arg2 ?arg2 .
+  {
+    SELECT ?arg1 WHERE {
+      ?arg1 :nodetype "MethodCallExpr" ;
+            :name ?name .
+      VALUES (?name) {("size") ("length")} .
+    }
+  }
+  UNION
+  {
+    SELECT ?arg2 WHERE {
+      ?arg2 :nodetype "MethodCallExpr" ;
+            :name ?name .
+      VALUES (?name) {("size") ("length")} .
+    }
+  }
+}

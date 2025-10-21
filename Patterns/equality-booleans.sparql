@@ -1,0 +1,11 @@
+# Name: Equality of Booleans
+
+SELECT DISTINCT ?n WHERE {
+  ?n :annotations/:name "Test" ;
+     :in/(:in|:next)* ?a .
+  ?a :nodetype "MethodCallExpr" ;
+     :name ?an ;
+     :params/:arg1/:resolvedtype "Boolean" ;
+     :params/:arg2/:resolvedtype "Boolean" .
+  VALUES (?an) {("assertEquals") ("assertNotEquals")} .
+}

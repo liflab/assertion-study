@@ -1,0 +1,6 @@
+# Name: Use of @Disabled
+
+SELECT DISTINCT ?n WHERE {
+  ?n :annotations/:name "Test" ;
+     :annotations/:name "Disabled" .
+}

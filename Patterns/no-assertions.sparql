@@ -1,0 +1,13 @@
+# Name: Absence of assertions
+
+SELECT DISTINCT ?n WHERE {
+  ?n :nodetype "MethodDeclaration" ;
+     :annotations/:name "Test" ;
+     :in ?body .
+  FILTER NOT EXISTS {
+    ?body (:in|:next)* ?call .
+    ?call :name ?callname ;
+          :nodetype "MethodCallExpr" .
+    FILTER (STRSTARTS(?callname, "assert")) .
+  }
+}

@@ -1,0 +1,11 @@
+# Name: Dynamic equality
+
+SELECT DISTINCT ?n WHERE {
+  ?n :annotations/:name "Test" ;
+     :in/(:in|:next)* ?a .
+  ?a :nodetype "MethodCallExpr" ;
+     :name ?an .
+  FILTER(STRSTARTS(?an, "assert") .
+  ?a :params/:arg1/:nodetype "MethodCallExpr" ;
+     :params/:arg2/:nodetype "MethodCallExpr" .
+}

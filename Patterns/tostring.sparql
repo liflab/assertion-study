@@ -1,0 +1,25 @@
+# Name: Use of toString as an oracle
+
+SELECT DISTINCT ?n WHERE {
+  ?n :annotations/:name "Test" ;
+     :in/(:in|:next)* ?a .
+  ?a :nodetype "MethodCallExpr" ;
+     :name ?an .
+  FILTER(STRSTARTS(?an, "assert") .
+  
+  {
+    SELECT ?par1 WHERE {
+      ?a :params/:arg1 ?arg .
+      ?arg :nodetype "MethodCallExpr" ;
+            :name "toString" .
+    }
+  }
+  UNION
+  {
+    SELECT ?par1 WHERE {
+      ?a :params/:arg2 ?arg .
+      ?arg :nodetype "MethodCallExpr" ;
+            :name "toString" .
+    }
+  }
+}

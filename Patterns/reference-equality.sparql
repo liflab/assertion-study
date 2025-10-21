@@ -1,0 +1,22 @@
+# Name: Reference equality
+
+SELECT DISTINCT ?n WHERE {
+  ?n :nodetype "MethodDeclaration" ;
+     :annotations/:name "Test" ;
+     :in/(:in|:next)* ?call .
+  ?call :nodetype "MethodCallExpr" ;
+        :name ?callname .
+  VALUES (?callname) {("assertTrue") ("assertFalse")} .
+  ?call :params/:arg1 ?arg .
+  ?arg1 :nodetype "BinaryExpr"
+        :operator ?o .
+  VALUES (?o) {("==") ("!=") } .
+  ?o :params/:arg1/:resolvedtype/:name ?t1 ;
+     :params/:arg2/:resolvedtype/:name ?t2 .
+  FILTER NOT EXISTS {
+    VALUES (?t1) {("Boolean") ("Integer") ("Float") ("Double") ("String")} .
+  }
+  FILTER NOT EXISTS {
+    VALUES (?t2) {("Boolean") ("Integer") ("Float") ("Double") ("String")} .
+  }
+}
