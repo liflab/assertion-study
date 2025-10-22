@@ -7,16 +7,12 @@ SELECT DISTINCT ?n WHERE {
   ?call :nodetype "MethodCallExpr" ;
         :name ?callname .
   VALUES (?callname) {("assertTrue") ("assertFalse")} .
+  
   ?call :params/:arg1 ?arg .
-  ?arg1 :nodetype "BinaryExpr" ;
-        :operator ?o .
-  VALUES (?o) {("==") ("!=") } .
-  ?o :params/:arg1/:resolvedtype/:name ?t1 ;
-     :params/:arg2/:resolvedtype/:name ?t2 .
-  FILTER NOT EXISTS {
-    VALUES (?t1) {("Boolean") ("Integer") ("Float") ("Double") ("String")} .
-  }
-  FILTER NOT EXISTS {
-    VALUES (?t2) {("Boolean") ("Integer") ("Float") ("Double") ("String")} .
-  }
+  ?arg  :nodetype "BinaryExpr" .
+  
+  ?arg  :arg1/:resolvedtype ?t1 ;
+        :arg2/:resolvedtype ?t2 .
+  FILTER (?t1 NOT IN ("int", "boolean", "float", "double", "java.lang.Integer", "java.lang.Boolean", "java.lang.Float", "java.lang.Double")) .
+  FILTER (?t2 NOT IN ("int", "boolean", "float", "double", "java.lang.Integer", "java.lang.Boolean", "java.lang.Float", "java.lang.Double")) .
 }

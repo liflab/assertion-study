@@ -1,0 +1,13 @@
+# Name: Assertion chaining
+
+SELECT DISTINCT ?n WHERE {
+  ?n :nodetype "MethodCallExpr" ;
+     :scope ?a0 .
+  ?a0 :nodetype "MethodCallExpr" ;
+      :scope ?a1 .
+  
+
+       ?a1 :nodetype "MethodCallExpr" ;
+           :name ?name .
+FILTER(STRSTARTS(?name, "assertThat")).
+}

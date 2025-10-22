@@ -1,16 +1,12 @@
 # Name: Recursive assertions
 
 SELECT DISTINCT ?n WHERE {
-  ?n :annotations/:name "Test" ;
-     :in ?c .
-
-  ?c :nodetype "MethodCallExpr" ;
-        :name ?name ;
-        :declaration ?decl .
+  ?n :nodetype "MethodDeclaration" ;
+        :name ?name .
   
   FILTER(STRSTARTS(?name, "assert")) .
   
-  ?decl :in/(:in|:next)* ?other .
+  ?n :in/(:in|:next)* ?other .
   ?other :nodetype "MethodCallExpr" ;
          :name ?othername .
   

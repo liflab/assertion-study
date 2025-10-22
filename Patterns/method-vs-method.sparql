@@ -1,0 +1,9 @@
+# Name: Method vs method
+
+SELECT DISTINCT ?n WHERE {
+  ?n :nodetype "MethodCallExpr" ;
+     :name ?name .
+  VALUES (?name) {("assertEquals") ("assertNotEquals") } .
+  ?n :params/:arg1/:nodetype "MethodCallExpr" ;
+     :params/:arg2/:nodetype "MethodCallExpr" .
+}

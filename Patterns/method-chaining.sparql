@@ -1,0 +1,23 @@
+# Name: Method chaining
+
+SELECT DISTINCT ?n WHERE {
+  ?n :nodetype "MethodCallExpr" ;
+     :name ?name .
+  FILTER(STRSTARTS(?name, "assert")) .
+  
+  {
+    SELECT ?n WHERE {
+       ?n :params/:arg1 ?a1 .
+       ?a1 :nodetype "MethodCallExpr" ;
+           :scope/:nodetype "MethodCallExpr" .
+    }
+  }
+  UNION
+  {
+    SELECT ?n WHERE {
+       ?n :params/:arg2 ?a1 .
+       ?a1 :nodetype "MethodCallExpr" ;
+           :scope/:nodetype "MethodCallExpr" .
+    }
+  }
+}

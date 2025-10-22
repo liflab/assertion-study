@@ -1,9 +1,9 @@
 # Name: Equality between/Different types
 SELECT ?n WHERE {
-  ?n :nodetype "MethodCallExp" ;
+  ?n :nodetype "MethodCallExpr" ;
      :name ?an ;
-     :params/:arg1/:type ?t1 ;
-     :params/:arg2/:type ?t2 .
+     :params/:arg1/:resolvedtype ?t1 ;
+     :params/:arg2/:resolvedtype ?t2 .
   VALUES (?an) {("assertEquals") ("assertNotEquals")} .
-  FILTER (?t1 != ?t2) .
+  FILTER (?t1!= ?t2) .
 }
