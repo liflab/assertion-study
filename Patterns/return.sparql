@@ -1,5 +1,5 @@
-# Name: Tests with return
+# Name: Use of return
 SELECT ?n WHERE {
   ?n :annotations/:name "Test" ;
-     (:in|:next)*/:nodetype "ReturnStmt" .
+     :in/(:in|:next)*/:nodetype "ReturnStmt" .
 }

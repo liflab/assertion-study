@@ -8,7 +8,7 @@ SELECT DISTINCT ?n WHERE {
         :name ?callname .
   VALUES (?callname) {("assertTrue") ("assertFalse")} .
   ?call :params/:arg1 ?arg .
-  ?arg1 :nodetype "BinaryExpr"
+  ?arg1 :nodetype "BinaryExpr" ;
         :operator ?o .
   VALUES (?o) {("==") ("!=") } .
   ?o :params/:arg1/:resolvedtype/:name ?t1 ;

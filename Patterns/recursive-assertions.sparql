@@ -2,17 +2,16 @@
 
 SELECT DISTINCT ?n WHERE {
   ?n :annotations/:name "Test" ;
-     :in ?call .
+     :in ?c .
 
-  ?call :nodetype "MethodCallExpr" ;
+  ?c :nodetype "MethodCallExpr" ;
         :name ?name ;
         :declaration ?decl .
   
-  FILTER(STRSTARTS(?name, "assert")).
+  FILTER(STRSTARTS(?name, "assert")) .
   
-  # Self-call inside its body
-  ?decl :in/(:in|:next)* ?other ;
-  ?other :nodetype "MethodCallExpr"
+  ?decl :in/(:in|:next)* ?other .
+  ?other :nodetype "MethodCallExpr" ;
          :name ?othername .
   
   FILTER (?name = ?othername) .

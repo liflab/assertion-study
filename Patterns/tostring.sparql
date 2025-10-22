@@ -5,7 +5,7 @@ SELECT DISTINCT ?n WHERE {
      :in/(:in|:next)* ?a .
   ?a :nodetype "MethodCallExpr" ;
      :name ?an .
-  FILTER(STRSTARTS(?an, "assert") .
+  FILTER(STRSTARTS(?an, "assert")) .
   
   {
     SELECT ?par1 WHERE {

@@ -8,6 +8,6 @@ SELECT DISTINCT ?n WHERE {
     ?body (:in|:next)* ?call .
     ?call :name ?callname ;
           :nodetype "MethodCallExpr" .
-    FILTER (STRSTARTS(?callname, "assert")) .
+    FILTER (STRSTARTS(?callname, "assert") || STRSTARTS(?callname, "fail")) .
   }
 }

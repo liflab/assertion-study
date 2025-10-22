@@ -5,12 +5,9 @@ SELECT DISTINCT ?n WHERE {
      :params ?a .
   VALUES (?an) {("assertEquals") ("assertNotEquals")} .
   ?a :arg1/:nodetype ?t1 ;
-     :arg1/:resolvedtype ?r1 ;
-     :arg2/:nodetype ?t2 ;
-     :arg2/:resolvedtype ?r2 .
+     :arg2/:nodetype ?t2 .
   FILTER (CONTAINS(?t1, "Literal")) .
   FILTER (CONTAINS(?t2, "Literal")) .
-  FILTER (?r1 = ?r2) .
   FILTER NOT EXISTS {
     ?a :arg3 ?x .
   } .

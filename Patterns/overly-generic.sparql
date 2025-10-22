@@ -10,14 +10,14 @@ SELECT DISTINCT ?n WHERE {
   
   {
     SELECT ?arg WHERE {
-      ?arg :nodeType "MethodCallExpr" ;
+      ?arg :nodetype "MethodCallExpr" ;
            :name "equals" .
     }
   }
   UNION
   {
     SELECT ?arg WHERE {
-      ?arg :nodeType "BinaryExpr" ;
+      ?arg :nodetype "BinaryExpr" ;
            :operator ?o .
       VALUES (?o) {("==") ("!=") ("<") (">") ("<=") (">=") } .
     }

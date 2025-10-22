@@ -3,5 +3,5 @@ SELECT ?n WHERE {
   ?n :annotations/:name "Test" ;
      :nodetype "MethodDeclaration" ;
      :returns ?t .
-  FILTER (?t != "void") .
+  FILTER (?t != "VoidType") .
 }
