@@ -174,16 +174,20 @@
 	  depends="init"
 	  description="Clones the repositories"> <cloneif repo="https://github.com/apache/hadoop.git" dir="${repofolder}/Hadoop"/>
 	  <cloneif repo="https://github.com/apache/ant.git" dir="${repofolder}/Ant"/>
-	  <cloneif repo="https://github.com/google/guava.git" dir="${repofolder}/Guava"/>
+	  <cloneif repo="https://github.com/bootique/bootique.git" dir="${repofolder}/Bootique"/>
 	  <cloneif repo="https://github.com/elastic/elasticsearch.git" dir="${repofolder}/ElasticSearch"/>
-	  <cloneif repo="https://github.com/sylvainhalle/textidote.git" dir="${repofolder}/TeXtidote"/>
-	  <cloneif repo="https://github.com/JabRef/jabref.git" dir="${repofolder}/JabRef"/>
-	  <cloneif repo="https://anongit.freedesktop.org/git/libreoffice/core.git" dir="${repofolder}/LibreOffice"/>
-	  <cloneif repo="https://github.com/JetBrains/intellij-community.git" dir="${repofolder}/IntelliJ"/>
-	  <checkoutif repo=":pserver:anonymous@gee.cs.oswego.edu/home/jsr166/jsr166" dir="${repofolder}/JSR166" package="jsr166"/>
-	  <cloneif repo="https://github.com/jenkinsci/jenkins.git" dir="${repofolder}/Jenkins"/>
 	  <cloneif repo="https://github.com/oracle/graal.git" dir="${repofolder}/GraalVM"/>
+	  <cloneif repo="https://github.com/google/guava.git" dir="${repofolder}/Guava"/>
+	  <cloneif repo="https://github.com/JetBrains/intellij-community.git" dir="${repofolder}/IntelliJ"/>
+	  <cloneif repo="https://github.com/JabRef/jabref.git" dir="${repofolder}/JabRef"/>
+	  <cloneif repo="https://github.com/jenkinsci/jenkins.git" dir="${repofolder}/Jenkins"/>
 	  <svncheckoutif repo="http://oss.mars.asu.edu/svn/jmars/" dir="${repofolder}/JMars"/>
+	  <checkoutif repo=":pserver:anonymous@gee.cs.oswego.edu/home/jsr166/jsr166" dir="${repofolder}/JSR166" package="jsr166"/>
+	  <cloneif repo="https://anongit.freedesktop.org/git/libreoffice/core.git" dir="${repofolder}/LibreOffice"/>
+	  <cloneif repo="https://github.com/LWJGL/lwjgl3.git" dir="${repofolder}/LWJGL"/>
+	  <cloneif repo="https://github.com/Evolveum/midpoint.git" dir="${repofolder}/MidPoint"/>
+	  <cloneif repo="https://github.com/SonarSource/sonarqube.git" dir="${repofolder}/SonarQube"/>
+	  <cloneif repo="https://github.com/sylvainhalle/textidote.git" dir="${repofolder}/TeXtidote"/>
 	  <cloneif repo="https://github.com/thunderbird/thunderbird-android.git" dir="${repofolder}/Thunderbird"/>
 	  <cloneif repo="https://github.com/nasa/ziggy.git" dir="${repofolder}/Ziggy"/>
 	</target>

@@ -1,4 +1,4 @@
-# Analysis profile for JMars
+# Analysis profile for LWJGL
 --project JMars
 --summary
 --quiet
