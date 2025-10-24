@@ -1,13 +1,15 @@
 # Name: Absence of assertions
 
 SELECT DISTINCT ?n WHERE {
-  ?n :nodetype "MethodDeclaration" ;
-     :annotations/:name "Test" ;
-     :in ?body .
+  ?n  :nodetype "MethodDeclaration" ;
+      :annotations/:name "Test" ;
+      :in ?blk .
+  ?blk :nodetype "BlockStmt" .
+
   FILTER NOT EXISTS {
-    ?body (:in|:next)* ?call .
-    ?call :name ?callname ;
-          :nodetype "MethodCallExpr" .
-    FILTER (STRSTARTS(?callname, "assert") || STRSTARTS(?callname, "fail")) .
+    ?blk (:in|:next|:scope|:params|:arg1|:arg2)* ?call .
+    ?call :nodetype "MethodCallExpr" ;
+          :name ?callname .
+    FILTER regex(?callname, "^(assert|fail|verify|should|check|expect)|test", "i")
   }
 }
