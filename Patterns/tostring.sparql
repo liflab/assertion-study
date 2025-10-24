@@ -8,7 +8,7 @@ SELECT DISTINCT ?n WHERE {
   FILTER(STRSTARTS(?an, "assert")) .
   
   {
-    SELECT ?par1 WHERE {
+    SELECT ?a WHERE {
       ?a :params/:arg1 ?arg .
       ?arg :nodetype "MethodCallExpr" ;
             :name "toString" .
@@ -16,7 +16,7 @@ SELECT DISTINCT ?n WHERE {
   }
   UNION
   {
-    SELECT ?par1 WHERE {
+    SELECT ?a WHERE {
       ?a :params/:arg2 ?arg .
       ?arg :nodetype "MethodCallExpr" ;
             :name "toString" .

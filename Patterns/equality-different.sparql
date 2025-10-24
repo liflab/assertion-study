@@ -31,7 +31,7 @@ BIND(COALESCE(?c1, ?s1) AS ?canon1)
 BIND(COALESCE(?c2, ?s2) AS ?canon2)
 
 # ---- The condition you want: "different", with unknowns filtered out ----
-FILTER(?s1 != "?" && ?s2 != "?" && ?canon1 != ?canon2).
+FILTER(?s1 != "?" && ?s2 != "?" && ?s1 != "java.lang.object" && ?s2 != "java.lang.object" && ?s1 != "null" && ?s2 != "null" && ?canon1 != ?canon2).
 
 FILTER NOT EXISTS {
   ?n :params/:arg3 ?a3.
