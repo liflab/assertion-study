@@ -5,5 +5,36 @@ SELECT ?n WHERE {
      :params/:arg1/:resolvedtype ?t1 ;
      :params/:arg2/:resolvedtype ?t2 .
   VALUES (?an) {("assertEquals") ("assertNotEquals")} .
-  FILTER (?t1!= ?t2) .
+  # Normalize both types to a common canonical form (boxed fqcn in lowercase)
+BIND(LCASE(STR(?t1)) AS ?s1)
+BIND(LCASE(STR(?t2)) AS ?s2)
+
+# Map aliases (primitive, short class name, or fqcn) -> canonical boxed fqcn
+VALUES (?alias ?canon) {
+  ("byte"        "java.lang.byte")        ("java.lang.byte"        "java.lang.byte")
+  ("short"       "java.lang.short")       ("java.lang.short"       "java.lang.short")
+  ("int"         "java.lang.integer")     ("integer"               "java.lang.integer")
+  ("java.lang.integer" "java.lang.integer")
+  ("long"        "java.lang.long")        ("java.lang.long"        "java.lang.long")
+  ("float"       "java.lang.float")       ("java.lang.float"       "java.lang.float")
+  ("double"      "java.lang.double")      ("java.lang.double"      "java.lang.double")
+  ("boolean"     "java.lang.boolean")     ("java.lang.boolean"     "java.lang.boolean")
+  ("char"        "java.lang.character")   ("character"             "java.lang.character")
+  ("string"      "java.lang.string")
+  ("java.lang.character" "java.lang.character")
+}
+
+OPTIONAL { FILTER(?s1 = ?alias) BIND(?canon AS ?c1) }
+OPTIONAL { FILTER(?s2 = ?alias) BIND(?canon AS ?c2) }
+
+BIND(COALESCE(?c1, ?s1) AS ?canon1)
+BIND(COALESCE(?c2, ?s2) AS ?canon2)
+
+# ---- The condition you want: "different", with unknowns filtered out ----
+FILTER(?s1 != "?" && ?s2 != "?" && ?canon1 != ?canon2).
+
+FILTER NOT EXISTS {
+  ?n :params/:arg3 ?a3.
+}
+
 }
