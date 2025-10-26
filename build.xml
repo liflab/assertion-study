@@ -15,7 +15,7 @@
 	<property name="profilefolder" value="Profiles"/>
   
   <!-- The version of the tool to download -->
-	<property name="toolversion" value="1.2"/>
+	<property name="toolversion" value="1.2.1"/>
   
   <!-- The folder containing the cache -->
 	<property name="cachefolder" value=".cache"/>

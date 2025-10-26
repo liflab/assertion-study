@@ -102,3 +102,10 @@ Projects currently included
 - [Ziggy](https://github.com/nasa/ziggy) (82K LOC)
 
 The `debug` project is only used to test each of the SPARQL queries.
+
+### Version hashes
+
+The hash of the latest commit in each downloaded repository can be displayed
+by typing:
+
+    ant -S hashes
