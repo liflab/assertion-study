@@ -40,6 +40,13 @@ Analyzing a project
    file can be opened in a browser to examine the exact locations where the
    patterns have been detected.
 
+The script accepts the following arguments:
+
+- `Doffline=true`: indicates to the script that the host is offline. Any
+  attempt to execute a task that requires network access will fail.
+- `Dreporoot=xxx/`: Tthe folder where libraries (ant-contrib, etc.)
+  will be downloaded if necessary. **Trailing slash is mandatory.**
+
 ### By calling the tool directly
 
 1. Type `java -jar lib/piglet-y.y.jar xxx.profile`, where `xxx`

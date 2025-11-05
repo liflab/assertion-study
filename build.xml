@@ -1,18 +1,26 @@
+<!--
+  Ant build script for the assertion study project.
+  
+-->
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project name="Simple assertion study survey" default="setup" basedir=".">
   
+  <!-- The root folder. The default is "" (current folder); can be
+       overridden at the command line by setting -Dreporoot=xyz -->
+  <property name="reporoot" value=""/>
+  
   <!-- The folder where libraries (ant-contrib, etc.) will be downloaded
-       if necessary -->
-	<property name="build.libdir" value="lib"/>
+       if necessary. Trailing slash is mandatory. -->
+  <property name="build.libdir" value="${reporoot}lib"/>
   
   <!-- The folder where repositories will be cloned -->
-	<property name="repofolder" value="Repositories"/>
+	<property name="repofolder" value="${reporoot}Repositories"/>
   
   <!-- The folder where repositories will be cloned -->
-	<property name="reportfolder" value="Reports"/>
+	<property name="reportfolder" value="${reporoot}Reports"/>
 
   <!-- The folder where profiles are stored -->
-	<property name="profilefolder" value="Profiles"/>
+	<property name="profilefolder" value="${reporoot}Profiles"/>
   
   <!-- The version of the tool to download -->
 	<property name="toolversion" value="1.2.1"/>
@@ -140,7 +148,7 @@
 	<condition property="ant-contrib.absent" value="false" else="true">
 		<available file="${build.libdir}/ant-contrib-1.0b3.jar"/>
 	</condition>
-	<target name="ant-contrib" if="${ant-contrib.absent}" description="Install ant-contrib if not present">
+	<target name="ant-contrib" if="${ant-contrib.absent}" description="Install ant-contrib if not present" unless="offline">
 		<echo message="ant-contrib is not installed. Downloading..." level="info"/>
 		<mkdir dir="${build.libdir}"/>
 		<get src="http://sylvainhalle.github.io/AntRun/dependencies/ant-contrib-1.0b3-bin.zip" dest="${build.libdir}/ant-contrib-1.0b3-bin.zip"/>
@@ -165,7 +173,7 @@
   <!-- Target: download-tool
        Downloads the tool if not present
   -->
-	<condition property="piglet.absent" value="false" else="true">
+	<condition property="piglet.absent" value="false" else="true" unless="offline">
 		<available file="${build.libdir}/${toolname}.jar"/>
 	</condition>
 	<target name="download-tool" depends="init" if="${piglet.absent}" description="Download the tool">
@@ -175,7 +183,7 @@
   <!-- Target: clone
        Clones the repositories
   -->
-	<target name="clone" depends="init" description="Clones the repositories">
+	<target name="clone" depends="init" description="Clones the repositories" unless="offline">
 		<cloneif repo="https://github.com/apache/hadoop.git" dir="${repofolder}/Hadoop"/>
 		<cloneif repo="https://github.com/apache/ant.git" dir="${repofolder}/Ant"/>
 		<cloneif repo="https://github.com/bootique/bootique.git" dir="${repofolder}/Bootique"/>
