@@ -3,7 +3,7 @@
 --summary
 --quiet
 --root gov
---source Repositories/Ziggy
---output Reports/Ziggy.html
+--source Repositories/ziggy
+--output Reports/ziggy.html
 --query Patterns
 --timeout 10

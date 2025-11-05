@@ -3,8 +3,8 @@
 --summary
 --quiet
 --root org
---source Repositories/ElasticSearch
+--source Repositories/elasticsearch
 --output elasticsearch.html
 --query Patterns
 --timeout 10
-Repositories/ElasticSearch
+Repositories/elasticSearch

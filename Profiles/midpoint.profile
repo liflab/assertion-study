@@ -3,8 +3,8 @@
 --summary
 --quiet
 --root com
---source Repositories/MidPoint
---output Reports/MidPoint.html
+--source Repositories/midpoint
+--output Reports/midpoint.html
 --query Patterns
 --timeout 10
-Repositories/MidPoint
+Repositories/midpoint

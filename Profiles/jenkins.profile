@@ -3,7 +3,7 @@
 --summary
 --quiet
 --root jenkins
---source Repositories/Jenkins
---output Reports/Jenkins.html
+--source Repositories/jenkins
+--output Reports/jenkins.html
 --query Patterns
 --timeout 10

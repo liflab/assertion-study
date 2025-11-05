@@ -3,7 +3,7 @@
 --summary
 --quiet
 --root org
---source Repositories/JabRef
---output Reports/JabRef.html
+--source Repositories/jabref
+--output Reports/jabref.html
 --query Patterns
 --timeout 10

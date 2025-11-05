@@ -3,8 +3,8 @@
 --summary
 --quiet
 --root com
---source Repositories/Guava
---output Reports/Guava.html
+--source Repositories/guava
+--output Reports/guava.html
 --query Patterns
 --timeout 10
-Repositories/Guava
+Repositories/guava

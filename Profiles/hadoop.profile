@@ -2,8 +2,8 @@
 --summary
 --quiet
 --root org
---source Repositories/Hadoop
---output Reports/Hadoop.html
+--source Repositories/hadoop
+--output Reports/hadoop.html
 --query Patterns
 --timeout 10
-Repositories/Hadoop
+Repositories/hadoop

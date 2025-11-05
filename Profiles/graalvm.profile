@@ -3,7 +3,8 @@
 --summary
 --quiet
 --root gov
---source Repositories/GraalVM
---output Reports/GraalVM.html
+--source Repositories/graalvm
+--output Reports/graalvm.html
 --query Patterns
 --timeout 10
+Repositories/graalvm

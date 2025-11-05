@@ -3,7 +3,8 @@
 --summary
 --quiet
 --root edu
---source Repositories/JMars
---output Reports/JMars.html
+--source Repositories/jmars
+--output Reports/jmars.html
 --query Patterns
 --timeout 10
+Repositories/jmars

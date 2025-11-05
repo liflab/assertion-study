@@ -3,7 +3,8 @@
 --summary
 --quiet
 --root ca
---source Repositories/Synthia
---output Reports/Synthia.html
+--source Repositories/synthia
+--output Reports/synthia.html
 --query Patterns
 --timeout 10
+Repositories/synthia

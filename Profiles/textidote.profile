@@ -3,7 +3,8 @@
 --summary
 --quiet
 --root ca
---source Repositories/TeXtidote
---output Reports/TeXtidote.html
+--source Repositories/textidote
+--output Reports/textidote.html
 --query Patterns
 --timeout 10
+Repositories/textidote

@@ -3,7 +3,8 @@
 --summary
 --quiet
 --root org
---source Repositories/LibreOffice
---output Reports/LibreOffice.html
+--source Repositories/libreoffice
+--output Reports/libreoffice.html
 --query Patterns
 --timeout 10
+Repositories/libreoffice

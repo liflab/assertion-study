@@ -1,8 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
   Ant build script for the assertion study project.
-  
 -->
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project name="Simple assertion study survey" default="setup" basedir=".">
   
   <!-- The root folder. The default is "" (current folder); can be
@@ -23,10 +22,10 @@
 	<property name="profilefolder" value="${reporoot}Profiles"/>
   
   <!-- The version of the tool to download -->
-	<property name="toolversion" value="1.2.1"/>
+	<property name="toolversion" value="1.2.2"/>
   
   <!-- The folder containing the cache -->
-	<property name="cachefolder" value=".cache"/>
+	<property name="cachefolder" value="${reporoot}.cache"/>
   
   <!-- The name of the tool to download -->
 	<property name="toolname" value="piglet-${toolversion}"/> 
@@ -173,10 +172,10 @@
   <!-- Target: download-tool
        Downloads the tool if not present
   -->
-	<condition property="piglet.absent" value="false" else="true" unless="offline">
+	<condition property="piglet.absent" value="false" else="true">
 		<available file="${build.libdir}/${toolname}.jar"/>
 	</condition>
-	<target name="download-tool" depends="init" if="${piglet.absent}" description="Download the tool">
+	<target name="download-tool" depends="init" if="${piglet.absent}" description="Download the tool" unless="offline">
 		<get src="https://github.com/liflab/piglet/releases/download/v${toolversion}/${toolname}.jar" dest="${build.libdir}/${toolname}.jar"/>
 	</target>
   
@@ -184,25 +183,25 @@
        Clones the repositories
   -->
 	<target name="clone" depends="init" description="Clones the repositories" unless="offline">
-		<cloneif repo="https://github.com/apache/hadoop.git" dir="${repofolder}/Hadoop"/>
-		<cloneif repo="https://github.com/apache/ant.git" dir="${repofolder}/Ant"/>
-		<cloneif repo="https://github.com/bootique/bootique.git" dir="${repofolder}/Bootique"/>
-		<cloneif repo="https://github.com/elastic/elasticsearch.git" dir="${repofolder}/ElasticSearch"/>
-		<cloneif repo="https://github.com/oracle/graal.git" dir="${repofolder}/GraalVM"/>
-		<cloneif repo="https://github.com/google/guava.git" dir="${repofolder}/Guava"/>
-		<cloneif repo="https://github.com/JetBrains/intellij-community.git" dir="${repofolder}/IntelliJ"/>
-		<cloneif repo="https://github.com/JabRef/jabref.git" dir="${repofolder}/JabRef"/>
-		<cloneif repo="https://github.com/jenkinsci/jenkins.git" dir="${repofolder}/Jenkins"/>
-		<svncheckoutif repo="http://oss.mars.asu.edu/svn/jmars/" dir="${repofolder}/JMars"/>
-		<checkoutif repo=":pserver:anonymous@gee.cs.oswego.edu/home/jsr166/jsr166" dir="${repofolder}/JSR166" package="jsr166"/>
-		<cloneif repo="https://anongit.freedesktop.org/git/libreoffice/core.git" dir="${repofolder}/LibreOffice"/>
-		<cloneif repo="https://github.com/LWJGL/lwjgl3.git" dir="${repofolder}/LWJGL"/>
-		<cloneif repo="https://github.com/Evolveum/midpoint.git" dir="${repofolder}/MidPoint"/>
-		<cloneif repo="https://github.com/neo4j/neo4j.git" dir="${repofolder}/Neo4j"/>
-		<cloneif repo="https://github.com/SonarSource/sonarqube.git" dir="${repofolder}/SonarQube"/>
-		<cloneif repo="https://github.com/sylvainhalle/textidote.git" dir="${repofolder}/TeXtidote"/>
-		<cloneif repo="https://github.com/thunderbird/thunderbird-android.git" dir="${repofolder}/Thunderbird"/>
-		<cloneif repo="https://github.com/nasa/ziggy.git" dir="${repofolder}/Ziggy"/>
+		<cloneif repo="https://github.com/apache/hadoop.git" dir="${repofolder}/hadoop"/>
+		<cloneif repo="https://github.com/apache/ant.git" dir="${repofolder}/ant"/>
+		<cloneif repo="https://github.com/bootique/bootique.git" dir="${repofolder}/bootique"/>
+		<cloneif repo="https://github.com/elastic/elasticsearch.git" dir="${repofolder}/elasticsearch"/>
+		<cloneif repo="https://github.com/oracle/graal.git" dir="${repofolder}/graalvm"/>
+		<cloneif repo="https://github.com/google/guava.git" dir="${repofolder}/guava"/>
+		<cloneif repo="https://github.com/JetBrains/intellij-community.git" dir="${repofolder}/intellij"/>
+		<cloneif repo="https://github.com/JabRef/jabref.git" dir="${repofolder}/jabref"/>
+		<cloneif repo="https://github.com/jenkinsci/jenkins.git" dir="${repofolder}/jenkins"/>
+		<svncheckoutif repo="http://oss.mars.asu.edu/svn/jmars/" dir="${repofolder}/jmars"/>
+		<checkoutif repo=":pserver:anonymous@gee.cs.oswego.edu/home/jsr166/jsr166" dir="${repofolder}/jsr166" package="jsr166"/>
+		<cloneif repo="https://anongit.freedesktop.org/git/libreoffice/core.git" dir="${repofolder}/libreoffice"/>
+		<cloneif repo="https://github.com/LWJGL/lwjgl3.git" dir="${repofolder}/lwjgl"/>
+		<cloneif repo="https://github.com/Evolveum/midpoint.git" dir="${repofolder}/midpoint"/>
+		<cloneif repo="https://github.com/neo4j/neo4j.git" dir="${repofolder}/neo4j"/>
+		<cloneif repo="https://github.com/SonarSource/sonarqube.git" dir="${repofolder}/sonarqube"/>
+		<cloneif repo="https://github.com/sylvainhalle/textidote.git" dir="${repofolder}/textidote"/>
+		<cloneif repo="https://github.com/thunderbird/thunderbird-android.git" dir="${repofolder}/thunderbird"/>
+		<cloneif repo="https://github.com/nasa/ziggy.git" dir="${repofolder}/ziggy"/>
 	</target>
 	
 	<!-- Target: hashes
@@ -262,13 +261,42 @@
 		</delete>
 	</target>
 	
+	<!-- Launches the tool to analyze one project -->
+	<macrodef name="launch">
+		<attribute name="repo"/>
+		<sequential>
+		  <java jar="${build.libdir}/${toolname}.jar" fork="true">
+			<arg line="--printout ${profilefolder}/@{repo}.profile"/>
+		  </java>
+		</sequential>
+	</macrodef>
+	
 	<!-- Target: analyze
 	     Analyzes a specific project
 	-->
 	<target name="analyze" depends="setup" description="Analyzes a repository">
-		<java jar="${build.libdir}/${toolname}.jar" fork="true">
-			<arg value="${profilefolder}/${project}.profile"/>
-		</java>
+		<launch repo="${project}"/>
 	</target>
+	
+	<!-- Target: analyze-all
+	     Analyzes all projects
+	-->
+	<target name="analyze-all" depends="setup" description="Analyzes all repositories">
+		<foreach target="analyze" param="project" list="ant,bootique,elasticsearch,graalvm,guava,hadoop,intellij,jabref,jenkins,jmars,jsr166,libreoffice,lwjgl,midpoint,neo4j,sonarqube,synthia,textidote,thunderbird,ziggy" parallel="false"/>
+	</target>
+	
+	<!-- Target: show-properties
+       Prints all the properties.
+   -->
+  <target name="show-properties" depends="init" description="Print all properties">
+      <echoproperties/>
+  </target>
+  
+  <!-- Target: dummy
+       Do nothing. This is only to test the build file
+  -->
+  <target name="dummy" description="Do nothing">
+      <!-- Do nothing -->
+  </target>
 </project>
 <!-- :tabWidth=2: -->

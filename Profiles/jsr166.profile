@@ -3,8 +3,8 @@
 --summary
 --quiet
 --root org
---source Repositories/JSR166/jsr166/src/test/jtreg/lib
---output Reports/JSR166.html
+--source Repositories/jsr166/jsr166/src/test/jtreg/lib
+--output Reports/jsr166.html
 --query Patterns
 --timeout 10
-Repositories/JSR166/jsr166/src/test/jtreg/util
+Repositories/jsr166/jsr166/src/test/jtreg/util

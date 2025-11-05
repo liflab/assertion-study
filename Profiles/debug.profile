@@ -5,8 +5,7 @@
 --root test
 --source Repositories/debug
 --output Reports/Debug.html
-#--query Patterns
---query Patterns/no-assertions.sparql
+--query Patterns
 --no-cache
 --follow 1
 Repositories/debug

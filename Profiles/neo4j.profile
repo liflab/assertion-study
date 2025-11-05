@@ -2,8 +2,9 @@
 --project Neo4j
 --summary
 --quiet
---root jenkins
---source Repositories/Neo4j
---output Reports/Neo4j.html
+--root org
+--source Repositories/neo4j
+--output Reports/neo4j.html
 --query Patterns
 --timeout 10
+Repositories/neo4j
