@@ -2,6 +2,7 @@
 --project Neo4j
 --summary
 --quiet
+--filteron @Test
 --root org
 --source Repositories/neo4j
 --output Reports/neo4j.html

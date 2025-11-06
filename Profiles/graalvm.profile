@@ -2,6 +2,7 @@
 --project GraalVM
 --summary
 --quiet
+--filteron @Test
 --root gov
 --source Repositories/graalvm
 --output Reports/graalvm.html

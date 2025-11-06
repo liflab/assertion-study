@@ -2,6 +2,7 @@
 --project SonarQube
 --summary
 --quiet
+--filteron @Test
 --root org
 --source Repositories/sonarqube
 --output Reports/sonarqube.html

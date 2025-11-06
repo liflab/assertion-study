@@ -2,6 +2,7 @@
 --project Guava
 --summary
 --quiet
+--filteron @Test
 --root com
 --source Repositories/guava
 --output Reports/guava.html

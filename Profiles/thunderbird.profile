@@ -2,6 +2,7 @@
 --project Thunderbird
 --summary
 --quiet
+--filteron @Test
 --root com:app
 --source Repositories/Thunderbird
 --output Reports/Thunderbird.html

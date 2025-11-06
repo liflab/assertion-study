@@ -2,6 +2,7 @@
 --project TeXtidote
 --summary
 --quiet
+--filteron @Test
 --root ca
 --source Repositories/textidote
 --output Reports/textidote.html

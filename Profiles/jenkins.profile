@@ -2,6 +2,7 @@
 --project Jenkins
 --summary
 --quiet
+--filteron @Test
 --root jenkins
 --source Repositories/jenkins
 --output Reports/jenkins.html

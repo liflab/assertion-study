@@ -1,6 +1,7 @@
 --project Hadoop
 --summary
 --quiet
+--filteron @Test
 --root org
 --source Repositories/hadoop
 --output Reports/hadoop.html

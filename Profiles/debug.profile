@@ -2,6 +2,7 @@
 --project Control
 --summary
 --quiet
+--filteron @Test
 --root test
 --source Repositories/debug
 --output Reports/Debug.html

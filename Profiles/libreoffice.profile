@@ -2,6 +2,7 @@
 --project LibreOffice
 --summary
 --quiet
+--filteron @Test
 --root org
 --source Repositories/libreoffice
 --output Reports/libreoffice.html

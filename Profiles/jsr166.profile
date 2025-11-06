@@ -2,6 +2,7 @@
 --project JSR166
 --summary
 --quiet
+--filteron @Test
 --root org
 --source Repositories/jsr166/jsr166/src/test/jtreg/lib
 --output Reports/jsr166.html

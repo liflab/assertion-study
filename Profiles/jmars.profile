@@ -2,6 +2,7 @@
 --project JMars
 --summary
 --quiet
+--filteron @Test
 --root edu
 --source Repositories/jmars
 --output Reports/jmars.html

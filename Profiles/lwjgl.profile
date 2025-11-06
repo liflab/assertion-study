@@ -2,6 +2,7 @@
 --project LWJGL
 --summary
 --quiet
+--filteron @Test
 --root org
 --source Repositories/lwjgl
 --output Reports/lwjgl.html

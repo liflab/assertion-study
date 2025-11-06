@@ -2,6 +2,7 @@
 --project MidPoint
 --summary
 --quiet
+--filteron @Test
 --root com
 --source Repositories/midpoint
 --output Reports/midpoint.html

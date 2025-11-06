@@ -2,6 +2,7 @@
 --project IntelliJ
 --summary
 --quiet
+--filteron @Test
 --root com:org
 --source Repositories/intellij
 --output Reports/intellij.html

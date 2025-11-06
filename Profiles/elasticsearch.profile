@@ -2,6 +2,7 @@
 --project ElasticSearch
 --summary
 --quiet
+--filteron @Test
 --root org
 --source Repositories/elasticsearch
 --output elasticsearch.html
