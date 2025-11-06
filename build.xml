@@ -50,7 +50,7 @@
 		</sequential>
 	</macrodef>
 	
-	<!-- Macro to call git clone -->
+	<!-- Macro to call git clone. Note -->
 	<macrodef name="git-clone">
 		<attribute name="repository" />
 		<attribute name="dest" />
@@ -96,7 +96,8 @@
 		</sequential>
 	</macrodef>
 	
-	<!-- Macro to clone only if target directory does not exist -->
+	<!-- Macro to clone only if target directory does not exist. Note that
+	     after cloning, all non-Java files are deleted. -->
 	<macrodef name="cloneif">
 		<attribute name="repo" />
 		<attribute name="dir" />
@@ -106,6 +107,7 @@
 				<then/>
 				<else>
 					<git-clone repository="@{repo}" dest="@{dir}" dir="" options="--depth 1"/>
+					<filter-folder dir="@{dir}"/>
 				</else>
 			</if>
 		</sequential>
@@ -141,6 +143,32 @@
 					<svn repository="@{repo}" dest="@{dir}"/>
 				</else>
 			</if>
+		</sequential>
+	</macrodef>
+	
+	<!-- Macro to remove all non-Java files from a folder -->
+	<macrodef name="filter-folder">
+	  <attribute name="dir"/>
+	  <sequential>
+	    <delete>
+          <fileset dir="@{dir}" includes="**/*" excludes="**/*.java, **/.git/**, **/*.jar"/>
+        </delete>
+        <deleteEmptyFolders dir="@{dir}"/>
+	  </sequential>
+	</macrodef>
+	
+	<!-- Macro to find and delete empty folders under dir -->
+	<macrodef name="deleteEmptyFolders">
+		<attribute name="dir"/>
+		<sequential>
+			<delete includeemptydirs="true">
+				<fileset dir="@{dir}"  >
+					<and>
+						<size value="0"/>
+						<type type="dir"/>
+					</and>
+				</fileset>
+			</delete>
 		</sequential>
 	</macrodef>
 	
@@ -237,6 +265,7 @@
 		</if>
 	</target>
 	
+	<!-- Macro to display the latest commit hash of a project -->
 	<macrodef name="display-hash">
 		<attribute name="dir"/>
 		<attribute name="hash"/>
@@ -262,6 +291,12 @@
 		<delete>
 			<fileset dir="${reportfolder}" includes="*.html"/>
 		</delete>
+	</target>
+	
+	<!-- Target: filter
+	     Remove all non-Java files -->
+	<target name="filter" description="Removes all non-Java files from repositories">
+	  <filter-folder dir="${repofolder}/${project}"/>
 	</target>
 	
 	<!-- Launches the tool to analyze one project -->
@@ -296,6 +331,13 @@
 	-->
 	<target name="analyze-all" depends="setup" description="Analyzes all repositories">
 		<foreach target="analyze" param="project" list="ant,bootique,elasticsearch,graalvm,guava,hadoop,intellij,jabref,jenkins,jmars,jsr166,libreoffice,lwjgl,midpoint,neo4j,sonarqube,synthia,textidote,thunderbird,ziggy" parallel="false"/>
+	</target>
+	
+	<!-- Target: filter-all
+	     Filters all projects
+	-->
+	<target name="filter-all" depends="setup" description="Filters all repositories">
+		<foreach target="filter" param="project" list="ant,bootique,elasticsearch,graalvm,guava,hadoop,intellij,jabref,jenkins,jmars,jsr166,libreoffice,lwjgl,midpoint,neo4j,sonarqube,synthia,textidote,thunderbird,ziggy" parallel="false"/>
 	</target>
 	
 	<!-- Target: show-properties
