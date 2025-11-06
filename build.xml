@@ -295,7 +295,7 @@
 	
 	<!-- Target: filter
 	     Remove all non-Java files -->
-	<target name="filter" description="Removes all non-Java files from repositories">
+	<target name="filter" depends="init" description="Removes all non-Java files from repositories">
 	  <filter-folder dir="${repofolder}/${project}"/>
 	</target>
 	
@@ -336,7 +336,7 @@
 	<!-- Target: filter-all
 	     Filters all projects
 	-->
-	<target name="filter-all" depends="setup" description="Filters all repositories">
+	<target name="filter-all" depends="init" description="Filters all repositories">
 		<foreach target="filter" param="project" list="ant,bootique,elasticsearch,graalvm,guava,hadoop,intellij,jabref,jenkins,jmars,jsr166,libreoffice,lwjgl,midpoint,neo4j,sonarqube,synthia,textidote,thunderbird,ziggy" parallel="false"/>
 	</target>
 	
