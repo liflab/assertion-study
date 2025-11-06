@@ -22,13 +22,16 @@
 	<property name="profilefolder" value="${reporoot}Profiles"/>
   
   <!-- The version of the tool to download -->
-	<property name="toolversion" value="1.2.2"/>
+	<property name="toolversion" value="1.2.2b"/>
   
   <!-- The folder containing the cache -->
 	<property name="cachefolder" value="${reporoot}.cache"/>
   
   <!-- The name of the tool to download -->
-	<property name="toolname" value="piglet-${toolversion}"/> 
+	<property name="toolname" value="piglet-${toolversion}"/>
+	
+	<!-- Whether to use the "printout" output option -->
+	<property name="printout" value="false"/>
 
     <!-- Macro to call git -->
 	<macrodef name="git">
@@ -265,9 +268,19 @@
 	<macrodef name="launch">
 		<attribute name="repo"/>
 		<sequential>
-		  <java jar="${build.libdir}/${toolname}.jar" fork="true">
-			<arg line="--printout ${profilefolder}/@{repo}.profile"/>
-		  </java>
+		  <if>
+		    <equals arg1="${printout}" arg2="true"/>
+		    <then>
+		      <java jar="${build.libdir}/${toolname}.jar" fork="true">
+			    <arg line="--printout ${profilefolder}/@{repo}.profile"/>
+		      </java>
+		    </then>
+		    <else>
+		      <java jar="${build.libdir}/${toolname}.jar" fork="true">
+			    <arg line="${profilefolder}/@{repo}.profile"/>
+		      </java>
+		    </else>
+		  </if>
 		</sequential>
 	</macrodef>
 	
